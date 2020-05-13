@@ -102,23 +102,26 @@ class CutterApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
                 S1 = 0
                 S2 = 0
                 while True:
-                    print(1)
+
                     T1 = setBits(self.rect, P1, T1)
                     T2 = setBits(self.rect, P2, T2)
 
                     S1 = getSum(T1)
                     S2 = getSum(T2)
-                    
+                    print(T1, T2, S1, S2)
                     if S1 == 0 and S2 == 0:
                         self.pen.setColor(self.colorInRect)
                         self.scene.addLine(P1.x(), P1.y(), P2.x(), P2.y(), self.pen)
                         break
                     
+                    # TODO проверку доделать за границами
                     
                     R = QtCore.QPointF()
-                
+                    if (logicMult(T1, T2) != 0):
+                        break
                     if logicMult(T1, T2) == 0:
                         R = P1
+                        print(1)
                         if i > 2:
                             if  logicMult(T1, T2) == 0:
                                 self.pen.setColor(self.colorInRect)
